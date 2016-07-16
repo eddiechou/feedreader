@@ -25,23 +25,33 @@ $(function() {
          * in the allFeeds object and ensures it has a URL defined
          * and that the URL is not empty.
          */
-        it('all have URL', function() {
-            allFeeds.forEach(function(feed) {
+
+        for(var feed = 0, len = allFeeds.length; feed < len; feed++) {
+            testFeedURL(allFeeds[feed]);
+        }
+
+        function testFeedURL(feed) {
+            it('feed has URL', function() {
                 expect(feed.url).toBeDefined();
                 expect(feed.url.length).not.toBe(0);
             });
-        });
+        }
 
         /* Completed: Write a test that loops through each feed
          * in the allFeeds object and ensures it has a name defined
          * and that the name is not empty.
          */
-         it('all have names', function() {
-            allFeeds.forEach(function(feed) {
+
+        for(var feed = 0, len = allFeeds.length; feed < len; feed++) {
+             testFeedName(allFeeds[feed]);
+        }
+
+        function testFeedName(feed) {
+            it('feed has name', function() {
                 expect(feed.name).toBeDefined();
                 expect(feed.name.length).not.toBe(0);
             });
-         });
+        }
     });
 
 
@@ -51,7 +61,7 @@ $(function() {
          * hidden by default.
          */
          it('is hidden by default', function() {
-            expect(document.body.classList.contains('menu-hidden')).toBe(true);
+            expect($('body').hasClass('menu-hidden')).toBe(true);
          });
 
         /* Completed: Write a test that ensures the menu changes
@@ -65,11 +75,11 @@ $(function() {
 
             // When clicked, the menu should show, so body should not have class 'menu-hidden' any more
             menuIcon.click();
-            expect( document.body.classList.contains('menu-hidden') ).toBe(false);
+            expect($('body').hasClass('menu-hidden')).toBe(false);
 
             // When clicked again, the menu should disappear, so body should have class 'menu-hidden'
             menuIcon.click();
-            expect( document.body.classList.contains('menu-hidden')).toBe(true);
+            expect($('body').hasClass('menu-hidden')).toBe(true);
         });
 
     });
@@ -103,9 +113,9 @@ $(function() {
             // Initialize
             loadFeed(0, function() {
                 // Get current header-title to compare
-                header = $('header-title').empty();
+                header = $('.header-title').html();
                 // Get feed entry title to compare
-                title = $('.feed .entry h2').empty();
+                title = $('.feed .entry h2').html();
                 // Call loadFeed again
                 loadFeed(1, done);
             });
@@ -115,7 +125,7 @@ $(function() {
          * by the loadFeed function that the content actually changes.
          */
         it('when loaded, the content actually changes', function(done){
-            expect($('header-title').html()).not.toBe(header);
+            expect($('.header-title').html()).not.toBe(header);
             expect($('.feed .entry h2').html()).not.toBe(title);
             done();
         });
