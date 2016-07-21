@@ -1,6 +1,6 @@
 # Project Overview
 
-In this project, I was given a web-based application that reads RSS feeds. I developed [Jasmine](http://jasmine.github.io/) tests to ensurd functionality worked as intended.
+In this project, I was given a web-based application that reads RSS feeds. I developed [Jasmine](http://jasmine.github.io/) tests to ensure functionality worked as intended.
 
 Tests ran:
 
